@@ -17,7 +17,7 @@ app.use(express.static('public'));
 if (!fs.existsSync(usersFile)) fs.writeFileSync(usersFile, '[]');
 
 // Sign Up Endpoint
-app.post('/api/signup', (req, res) => {
+app.post('/signup', (req, res) => {
   const { name, email, password, role } = req.body;
 
   let users = JSON.parse(fs.readFileSync(usersFile));
@@ -31,7 +31,7 @@ app.post('/api/signup', (req, res) => {
 });
 
 // Login Endpoint
-app.post('/api/login', (req, res) => {
+app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
   let users = JSON.parse(fs.readFileSync(usersFile));
