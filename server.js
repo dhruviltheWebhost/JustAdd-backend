@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 app.use(cors());
+
 const PORT = 3000;
 
 
@@ -42,6 +43,9 @@ app.post('/login', (req, res) => {
   } else {
     res.status(401).json({ message: 'Invalid email or password' });
   }
+});
+app.get("/", (req, res) => {
+  res.send("JustAdd backend is alive.");
 });
 
 app.listen(PORT, () => {
