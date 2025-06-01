@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="justadd-logo.png" type="image/x-icon">
+  <title>Sign Up - JustAdd</title>
+  <style>
+    /* your original CSS stays unchanged */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #fffaf3;
+    }
+
+    header {
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 10%;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f97316;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #f97316;
+    }
+
+    .signup-container {
+      max-width: 420px;
+      margin: 3rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    h1 {
+      color: #f97316;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote {
+      color: #777;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, select {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 0.75rem;
+      background-color: #f97316;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e65f00;
+    }
+
+    .login-link {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .login-link a {
+      color: #f97316;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="justadd-logo.png" alt="JustAdd Logo" />
+      <span>JustAdd</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="signup-container">
+    <h1>Create Your Account</h1>
+    <p class="quote">“Reach real people. Grow real fast.”</p>
+    <form id="signupForm">
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="password" placeholder="Password" required />
+      <select id="roleSelect" required>
+        <option value="" disabled selected>Select Role</option>
+        <option value="merchant">Merchant - Promote your business</option>
+        <option value="freelancer">Freelancer - Earn by promoting</option>
+      </select>
+      <button type="submit">Create Account</button>
+    </form>
+    <div class="login-link">
+      Already registered? <a href="login.html">Login here</a>
+    </div>
+  </div>
+
+ <script>
+  document.querySelector("form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.querySelector('input[placeholder="Full Name"]').value;
+    const email = document.querySelector('input[placeholder="Email Address"]').value;
+    const password = document.querySelector('input[placeholder="Password"]').value;
+    const role = document.querySelector('select').value;
+
+    const data = { name, email, password, role };
+
+    try {
+      const res = await fetch('http://localhost:3000/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+  localStorage.setItem("justaddUser", JSON.stringify(data));
+  // alert(result.message);
+
+  if (role === "merchant") {
+    window.location.href = "merchant-dashboard.html";
+    alert(result.message);
+  } else if (role === "freelancer") {
+    window.location.href = "freelancer-dashboard.html";
+    alert(result.message);
+  } else {
+    alert("Role not selected. Please choose Merchant or Freelancer.");
+  }
+}
+ else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred. Try again.");
+    }
+  });
+</script>
+
+</body>
+</html>

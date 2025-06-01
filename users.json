@@ -1,0 +1,44 @@
+[
+  {
+    "name": "d",
+    "email": "barotdhruvilc@gmail.com",
+    "password": "D",
+    "role": "freelancer"
+  },
+  {
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "1234",
+    "role": "merchant"
+  },
+  {
+    "name": "e",
+    "email": "jbsa@gmail.com",
+    "password": "1",
+    "role": "merchant"
+  },
+  {
+    "name": "f",
+    "email": "hjkhak@gmail.com",
+    "password": "1",
+    "role": "merchant"
+  },
+  {
+    "name": "D",
+    "email": "hjKHJBSM@gmail.com",
+    "password": "1",
+    "role": "merchant"
+  },
+  {
+    "name": "s",
+    "email": "poioai@gmail.com",
+    "password": "1",
+    "role": "merchant"
+  },
+  {
+    "name": "s",
+    "email": "poioa78ai@gmail.com",
+    "password": "2",
+    "role": "freelancer"
+  }
+]

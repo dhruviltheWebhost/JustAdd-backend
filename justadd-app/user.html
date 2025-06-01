@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="justadd-logo.png" type="image/x-icon">
+  <title>JustAdd — Where Merchants Meet Promoters.</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #222;
+      background: #fff;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    nav a.logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    nav a.logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    nav a.logo span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ff7a00;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      padding: 6px 10px;
+    }
+
+    .signup-btn {
+      background-color: #f97316;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .hero {
+      text-align: left;
+      padding: 80px 10%;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    section {
+      padding: 60px 10%;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .how-it-works {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .how-it-works div {
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .how-it-works div img {
+      width: 48px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f2f2f2;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        background: white;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 20px 10%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hero {
+        padding: 50px 5%;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .how-it-works {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      section {
+        padding: 40px 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="logo">
+      <img src="justadd-logo.png" alt="JustAdd Logo" />
+      <span>JustAdd</span>
+    </a>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="user.html">Home</a></li>
+      <li><a href="task.html">Task</a></li>
+      <li><a href="wallet.html">Wallet</a></li>
+      <li><a href="chat.html">Chatbox</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><img style="height: 35px; width: 35px; border-radius: 20px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTogPfhbLOk_neriTUlJLrzYaVQG1DszGsBLQ&s" alt="profilepic"></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <h2>Promote Ads, Earn Rewards</h2>
+    <p>Merchants post ads for publication.<br>Freelancers promote and earn rewards.</p>
+    <a href="#" class="signup-btn">Sign Up</a>
+  </section>
+
+  <section>
+    <h3>About Us</h3>
+    <p>We’re building a smart bridge between merchants who want to promote their business </p>
+      <p>and freelancers looking to earn through digital work</p>
+  </section>
+
+  <section>
+    <h3>How It Works</h3>
+    <div class="how-it-works">
+      <div>
+        <img src="https://img.icons8.com/ios/50/000000/news.png" alt="Post Ads" />
+        <h4>Post Ads</h4>
+        <p>Merchants publish ads for promotion.</p>
+      </div>
+      <div>
+        <img src="https://img.icons8.com/ios/50/000000/megaphone.png" alt="Promote" />
+        <h4>Promote</h4>
+        <p>Freelancers share and promote ads.</p>
+      </div>
+      <div>
+        <img src="https://img.icons8.com/ios/50/000000/money.png" alt="Earn" />
+        <h4>Earn</h4>
+        <p>Receive rewards for successful promotions</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Contact</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nec pulvinar massa.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 JustAdd. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+
+</body>
+</html>
