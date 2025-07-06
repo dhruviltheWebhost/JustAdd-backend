@@ -9,6 +9,13 @@ const PORT = 3000;
 
 
 const usersFile = path.join(__dirname, 'users.json');
+const adsFile = path.join(__dirname, 'ads.json');
+
+// Create empty ads.json if not found
+if (!fs.existsSync(adsFile)) {
+  fs.writeFileSync(adsFile, '[]');
+}
+
 
 // Middleware
 app.use(express.json());
@@ -44,6 +51,14 @@ app.post('/login', (req, res) => {
     res.status(401).json({ message: 'Invalid email or password' });
   }
 });
+app.post("/ads", (req, res) => {
+  const newAd = req.body;
+  const ads = JSON.parse(fs.readFileSync(adsFile));
+  ads.push(newAd);
+  fs.writeFileSync(adsFile, JSON.stringify(ads, null, 2));
+  res.json({ message: "Ad submitted successfully" });
+});
+
 app.get("/", (req, res) => {
   res.send("JustAdd backend is alive.");
 });
