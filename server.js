@@ -58,6 +58,12 @@ app.post("/ads", (req, res) => {
   fs.writeFileSync(adsFile, JSON.stringify(ads, null, 2));
   res.json({ message: "Ad submitted successfully" });
 });
+app.get("/ads", (req, res) => {
+  const email = req.query.email;
+  const ads = JSON.parse(fs.readFileSync(adsFile));
+  const filtered = email ? ads.filter(ad => ad.postedBy === email) : ads;
+  res.json(filtered);
+});
 
 app.get("/", (req, res) => {
   res.send("JustAdd backend is alive.");
