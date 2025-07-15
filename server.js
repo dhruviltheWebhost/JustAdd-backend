@@ -80,6 +80,12 @@ app.post("/accept-task", (req, res) => {
   fs.writeFileSync(acceptedFile, JSON.stringify(acceptedTasks, null, 2));
   res.json({ message: "Task accepted" });
 });
+app.get("/freelancer-accepted", (req, res) => {
+  const { email } = req.query;
+  const acceptedTasks = JSON.parse(fs.readFileSync(acceptedFile));
+  const tasksForFreelancer = acceptedTasks.filter(task => task.email === email);
+  res.json(tasksForFreelancer);
+});
 
 
 app.get("/", (req, res) => {
