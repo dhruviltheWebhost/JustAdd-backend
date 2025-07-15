@@ -11,10 +11,13 @@ const PORT = 3000;
 const usersFile = path.join(__dirname, 'users.json');
 const adsFile = path.join(__dirname, 'ads.json');
 
+
 // Create empty ads.json if not found
 if (!fs.existsSync(adsFile)) {
   fs.writeFileSync(adsFile, '[]');
 }
+const acceptedFile = path.join(__dirname, 'accepted_tasks.json');
+if (!fs.existsSync(acceptedFile)) fs.writeFileSync(acceptedFile, '[]');
 
 
 // Middleware
@@ -64,6 +67,20 @@ app.get("/ads", (req, res) => {
   const filtered = email ? ads.filter(ad => ad.postedBy === email) : ads;
   res.json(filtered);
 });
+app.post("/accept-task", (req, res) => {
+  const { email, taskTitle } = req.body;
+  const acceptedTasks = JSON.parse(fs.readFileSync(acceptedFile));
+
+  // Prevent duplicate
+  if (acceptedTasks.some(task => task.email === email && task.taskTitle === taskTitle)) {
+    return res.status(400).json({ message: "Task already accepted" });
+  }
+
+  acceptedTasks.push({ email, taskTitle });
+  fs.writeFileSync(acceptedFile, JSON.stringify(acceptedTasks, null, 2));
+  res.json({ message: "Task accepted" });
+});
+
 
 app.get("/", (req, res) => {
   res.send("JustAdd backend is alive.");
