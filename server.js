@@ -83,8 +83,19 @@ app.post("/accept-task", (req, res) => {
 app.get("/freelancer-accepted", (req, res) => {
   const { email } = req.query;
   const acceptedTasks = JSON.parse(fs.readFileSync(acceptedFile));
-  const tasksForFreelancer = acceptedTasks.filter(task => task.email === email);
-  res.json(tasksForFreelancer);
+  const allAds = JSON.parse(fs.readFileSync(adsFile));
+
+  const accepted = acceptedTasks
+    .filter(task => task.email === email)
+    .map(task => {
+      const ad = allAds.find(ad => ad.title === task.taskTitle);
+      return {
+        ...task,
+        ...(ad || {}) // add ad data if found
+      };
+    });
+
+  res.json(accepted);
 });
 
 
